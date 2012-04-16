@@ -434,7 +434,16 @@ void UpdateDialog::OnInstall(wxCommandEvent&)
 {
     // FIXME: download the file within WinSparkle UI, stop the app,
     // elevate privileges, launch the installer
-    wxLaunchDefaultBrowser(m_appcast.DownloadURL);
+	DownloadAction downloadAction;
+	Settings::ReadConfigValue<UINT32>("DownloadAction",(UINT32&)downloadAction,(UINT32)LaunchInBrowser);
+	switch(downloadAction)
+	{
+	
+	default:
+	case LaunchInBrowser:
+		wxLaunchDefaultBrowser(m_appcast.DownloadURL);
+	}
+	
     Close();
 }
 

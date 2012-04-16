@@ -34,6 +34,12 @@
 
 namespace winsparkle
 {
+	typedef enum DownloadAction
+	{
+		Undefined,
+		LaunchInBrowser,
+		AutoDownload
+	};
 
 /**
     Holds all of WinSparkle configuration.
@@ -61,6 +67,16 @@ public:
             ms_appcastURL = GetCustomResource("FeedURL", "APPCAST");
         return ms_appcastURL;
     }
+
+	/// Get the download behaviour
+	static DownloadAction GetDownloadAction()
+	{
+		CriticalSectionLocker lock(ms_csVars);
+		if(ms_downloadAction == Undefined)
+			ReadConfigValue<UINT32>("DownloadAction",(UINT32&)ms_downloadAction,LaunchInBrowser);
+
+		return ms_downloadAction;
+	}
 
     /// Return application name
     static std::wstring GetAppName()
@@ -114,6 +130,13 @@ public:
         CriticalSectionLocker lock(ms_csVars);
         ms_appcastURL = url;
     }
+
+	/// Set download action
+	static void SetDownloadAction(const DownloadAction action)
+	{
+		CriticalSectionLocker lock(ms_csVars);
+		ms_downloadAction = action;
+	}
 
     /// Set application name
     static void SetAppName(const wchar_t *name)
@@ -215,6 +238,7 @@ private:
     static std::wstring ms_companyName;
     static std::wstring ms_appName;
     static std::wstring ms_appVersion;
+	static DownloadAction ms_downloadAction;
 };
 
 } // namespace winsparkle

@@ -14,16 +14,19 @@
     <ProjectGuid>{F00FBD5D-F9FD-40A0-BCCE-1D619ADCA5A3}</ProjectGuid>
     <RootNamespace>WinSparkle</RootNamespace>
     <Keyword>Win32Proj</Keyword>
+    <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and $(VisualStudioVersion) == ''">$(VCTargetsPath11)</VCTargetsPath>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v100</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -111,6 +114,7 @@
     <ClCompile Include="src\dllmain.cpp" />
     <ClCompile Include="src\download.cpp" />
     <ClCompile Include="src\error.cpp" />
+    <ClCompile Include="src\BinaryDownloader.cpp" />
     <ClCompile Include="src\settings.cpp" />
     <ClCompile Include="src\threads.cpp" />
     <ClCompile Include="src\ui.cpp" />
@@ -122,6 +126,7 @@
     <ClInclude Include="src\appcast.h" />
     <ClInclude Include="src\download.h" />
     <ClInclude Include="src\error.h" />
+    <ClInclude Include="src\BinaryDownloader.h" />
     <ClInclude Include="src\settings.h" />
     <ClInclude Include="src\threads.h" />
     <ClInclude Include="src\ui.h" />
